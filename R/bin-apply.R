@@ -66,19 +66,22 @@ bin_apply <- function(data, y, x = "t", x_bin_length = mins(30),
     ifelse(is.null(x) | is.function(x), alt_b, x)
   }, error = function(e){alt_b}))
 
-
+  # print(b_name)
+  # print(head(data))
   out <- data[,
               .(
                 b__ = eval(parse(text=b_name)),
                 var__ = eval(parse(text=var_name))
                 )
               ]
-
+  # print(head(out))
   out <- out[, b__ := bin_var( b__, x_bin_length, wrap=wrap_x_by)]
   out <- out[, .(var__ = FUN(var__)),by = b__]
+  # print(head(out))
 
   data.table::setnames(out, c("var__", "b__"), c(var_name, b_name))
 
+  return(out)
 }
 
 
