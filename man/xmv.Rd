@@ -18,7 +18,7 @@ This function eXpands a MetaVariable from a parent \link{behavr} object.
 That is, it matches this variable (from metadata) to the data \emph{by id}.
 }
 \details{
-This function \emph{can only be called within between the \code{[]} of a parent} \link{behavr} object.
+This function \emph{can only be called within between the \verb{[]} of a parent} \link{behavr} object.
 It is intended to facilitate operations between data and metadata.
 For instance, when one wants to modify a variable according to a metavariable.
 }

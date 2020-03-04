@@ -34,7 +34,7 @@ For instance, it abstracts joins between data and metavariables.
 A \code{behavr} table is a \link{data.table}.
 Therefore, it can be used by any function that would work on a \link{data.frame} or a \link{data.table}.
 Most of the operation such as variable creation, subsetting and joins are inherited from the \link{data.table}
-\code{[]} operator, following the convention \code{DT[i,j,by]} (see data table package for detail).
+\verb{[]} operator, following the convention \code{DT[i,j,by]} (see data table package for detail).
 These operations are applied on the data.
 Metadata can be accessed using \code{meta=TRUE}: \code{DT[i,j,by, meta=TRUE]},
 which allows extraction of subsets, creation of metavariables, etc.
