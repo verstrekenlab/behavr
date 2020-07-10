@@ -55,7 +55,6 @@ bin_apply <- function(data, y, x = "t", x_bin_length = mins(30),
 
   # trick to avoid NOTES from R CMD check:
   var__ = b__ = .SD =  . = NULL
-
   alt_var <-deparse(substitute(y))
   alt_b <-deparse(substitute(x))
 
@@ -97,7 +96,9 @@ bin_apply_all <- function(data, ...){
 bin_var <- function(t, bin_length, wrap = NULL){
   if(!is.null(wrap))
     t <- t %% wrap
-  floor(t /bin_length) * bin_length
+  # print(t)
+  # print(bin_length)
+  floor(t / bin_length) * bin_length
 }
 
 
