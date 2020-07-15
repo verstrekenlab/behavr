@@ -4,10 +4,12 @@
 \alias{rejoin}
 \title{Join data and metadata}
 \usage{
-rejoin(x)
+rejoin(x, not_behavr_ok = FALSE)
 }
 \arguments{
 \item{x}{\link{behavr} object}
+
+\item{not_behavr_ok}{If TRUE just return x when x is not behavr. If not TRUE and x is not behavr, raise error}
 }
 \value{
 a \link{data.table}
