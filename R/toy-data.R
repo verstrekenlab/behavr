@@ -84,11 +84,26 @@ toy_activity_data <- function(metadata = NULL,
 # the behavioural variables `xy_dist_log10x1000`, `has_interacted` and `x`
 #' @rdname toy_activity_data
 #' @export
-toy_ethoscope_data <- function(...){
+toy_ethoscope_data <- function(id_value = NULL, ...){
   # trick to avoid NOTES from R CMD check:
   .SD = NULL
   activity_dt <- toy_activity_data(...)
-  out <- activity_dt[,velocityFromMovement(.SD),by="id"]
+  out <- activity_dt[,velocityFromMovement(.SD), by = "id"]
+
+  if (!is.null(id_value)) {
+    metadata <- out[, meta = T]
+    out[, id := paste0(id, id_value)]
+    epsilon <- sample(x = random::randomNumbers(n = 10000, col = 1)[,1], size = nrow(out), replace = TRUE)
+    print(epsilon[1:5])
+
+    out$xy_dist_log10x1000 <- out$xy_dist_log10x1000 + epsilon
+    metadata[, id := paste0(id, id_value)]
+    setkey(out, id)
+    setkey(metadata, id)
+    setmeta(out, metadata)
+    out
+  }
+
   out
 }
 

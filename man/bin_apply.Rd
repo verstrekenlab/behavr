@@ -12,7 +12,7 @@ bin_apply(
   x_bin_length = mins(30),
   wrap_x_by = NULL,
   FUN = mean,
-  ...
+  keep_columns = NULL
 )
 
 bin_apply_all(data, ...)
