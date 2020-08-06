@@ -26,7 +26,6 @@ merge_behavr <- function(x, y) {
 #' @export
 merge_behavr_all <- function(x, y) {
 
-  browser()
   data <- purrr::map(x[, unique(id)], function(i) {
     merged <- merge_behavr(x[id == i], y[id == i])
 
@@ -72,11 +71,9 @@ bin_all <- function(data, x="t", y, x_bin_length = 30*60, FUN = mean, keep_colum
   )
 
   sapply(data, function(x) "t" %in% colnames(x))
-  # browser()
   # if more than one variable was passed,
   # merge the results
   # all together
-  browser()
   if (all(sapply(data, function(x) inherits(x, "behavr"))))
     data <- Reduce(x = data, f = merge_behavr_all)
   else if (any(sapply(data, function(x) inherits(x, "behavr"))))
