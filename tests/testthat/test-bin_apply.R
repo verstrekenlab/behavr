@@ -57,11 +57,3 @@ test_that("bin_apply_all works", {
   expect_equal(dt_binned_expr_inv, dt_binned_expr)
   expect_equal(dt_binned_expr_inv, dt_binned_str)
 })
-
-
-dt <- toy_activity_data(data.frame(id = 1:3), duration = days(1))
-dt_binned_str <- bin_apply_all(data = dt,
-                               y = c("asleep", "moving"),
-                               x = "t",
-                               x_bin_length = mins(30),
-                               FUN = mean)
