@@ -50,57 +50,35 @@
 #' * [behavr] -- the documentation of the `behavr` object
 #' @export
 bin_apply <- function(data, y, x = "t", x_bin_length = mins(30),
-                      wrap_x_by = NULL, FUN = mean, keep_columns=NULL){
+                      wrap_x_by = NULL, FUN = mean, ...){
 
-
-  # browser()
-
-
-  # stopifnot(x != y)
 
   # trick to avoid NOTES from R CMD check:
   var__ = b__ = .SD =  . = NULL
+
   alt_var <-deparse(substitute(y))
   alt_b <-deparse(substitute(x))
 
   var_name <- suppressWarnings(tryCatch({
     ifelse(is.null(y) | is.function(y), alt_var,y)
     }, error = function(e){alt_var}))
-
   b_name <- suppressWarnings(tryCatch({
     ifelse(is.null(x) | is.function(x), alt_b, x)
   }, error = function(e){alt_b}))
 
 
-  if (is.null(keep_columns)) {
-    out <- data[,
-                .(
-                  b__ = eval(parse(text=b_name)),
-                  var__ = eval(parse(text=var_name))
-                  )
-                ]
-  } else {
-    out <- data.table::copy(data)
-    colnames(out)[colnames(out) == b_name] <- "b__"
-    colnames(out)[colnames(out) == var_name] <- "var__"
-  }
-  # print(head(out))
+  out <- data[,
+              .(
+                b__ = eval(parse(text=b_name)),
+                var__ = eval(parse(text=var_name))
+                )
+              ]
+
   out <- out[, b__ := bin_var( b__, x_bin_length, wrap=wrap_x_by)]
-  out2 <- out[, .(var__ = FUN(var__)), by = b__]
-
-  if (! is.null(keep_columns)) {
-
-    # keep_columns <- c("machine_name", "machine_id")
-    out <- cbind(out2, out[1, keep_columns, with = F])
-
-  } else {
-    out <- out2
-  }
-  # print(head(out))
+  out <- out[, .(var__ = FUN(var__)),by = b__]
 
   data.table::setnames(out, c("var__", "b__"), c(var_name, b_name))
 
-  return(out)
 }
 
 
@@ -111,19 +89,12 @@ bin_apply_all <- function(data, ...){
   .SD =  NULL
 
   data[, bin_apply(data=.SD, ...), by = eval(data.table::key(data))]
-  # data[, bin_apply(data=.SD, x = "t", y = "asleep", x_bin_length = x_bin_length, FUN = FUN, keep_columns = keep_columns)]
-  # data[, print(nrow(.SD)), by = eval(data.table::key(data))]
-  # bin_apply(data = data[data$id == unique(data$id)[1]])
-  # data[, print(nrow(.SD)), by = eval(data.table::key(data))]
-
 }
 
 bin_var <- function(t, bin_length, wrap = NULL){
   if(!is.null(wrap))
     t <- t %% wrap
-  # print(t)
-  # print(bin_length)
-  floor(t / bin_length) * bin_length
+  floor(t /bin_length) * bin_length
 }
 
 
