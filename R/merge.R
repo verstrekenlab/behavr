@@ -34,7 +34,9 @@ merge_behavr <- function(x, y) {
 
 #' @export
 #' @rdname merge_behavr
-#' @details merge_behavr_all with multi individual tables
+#' @details merge_behavr with multi individual tables
+#' @export
+
 merge_behavr_all <- function(x, y) {
 
   x_id_column <- data.table::key(x)
