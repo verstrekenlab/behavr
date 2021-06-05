@@ -1,4 +1,4 @@
-Package: fslbehavr
+Package: behavr
 Title: Canonical Data Structure for Behavioural Data 
 Date: 2019-01-02  
 Version: 0.3.2
@@ -18,7 +18,7 @@ Suggests:
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-URL: https://gitlab.com/flysleeplab/fsl-retho/behavr
-BugReports: https://gitlab.com/flysleeplab/fsl-retho/issues
+URL: https://github.com/shaliulab/behavr
+BugReports: https://github.com/shaliulab/behavr/issues
 RoxygenNote: 7.1.1.9000
 Roxygen: list(markdown = TRUE)
