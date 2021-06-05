@@ -5,10 +5,10 @@ test_that("all_identical utility", {
   l2 <- list(a=letters[1:2], letters[1:2], letters[1])
   l3 <- list(a=letters[1:2], letters[1:2], letters[1:3])
   l4 <- list(a=letters[1:2])
-  expect_true(behavr::all_identical(l1))
-  expect_false(behavr::all_identical(l2))
-  expect_false(behavr::all_identical(l3))
-  expect_true(behavr::all_identical(l4))
+  expect_true(behavr:::all_identical(l1))
+  expect_false(behavr:::all_identical(l2))
+  expect_false(behavr:::all_identical(l3))
+  expect_true(behavr:::all_identical(l4))
 })
 
 
