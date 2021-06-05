@@ -29,12 +29,7 @@
 #' @export
 rejoin <- function(x,  not_behavr_ok = FALSE){
    if(!is.behavr(x)) {
-     if(!not_behavr_ok) {
        stop("x is not a behavr table")
-     } else {
-       return(x)
-     }
-   } else {
      check_conform(x)
      data.table::as.data.table(meta(x)[x])
    }
