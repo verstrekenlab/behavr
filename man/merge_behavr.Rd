@@ -2,13 +2,21 @@
 % Please edit documentation in R/merge.R
 \name{merge_behavr}
 \alias{merge_behavr}
+\alias{merge_behavr_all}
 \title{Merge several behavr tables into a single dataframe}
 \usage{
 merge_behavr(x, y)
+
+merge_behavr_all(x, y)
 }
 \description{
 This function merges two behavr tables,
 represented by x and y, in such a way
 that x gains all the columns in y not present in x
 The merge is performed using the t column
+Both tables should refer to the same individual
+since this function is not id-aware
+}
+\details{
+merge_behavr with multi individual tables
 }

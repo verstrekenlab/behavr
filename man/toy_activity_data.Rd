@@ -15,7 +15,7 @@ toy_activity_data(
   ...
 )
 
-toy_ethoscope_data(id_value = NULL, ...)
+toy_ethoscope_data(...)
 
 toy_dam_data(...)
 }

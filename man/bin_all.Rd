@@ -4,14 +4,14 @@
 \alias{bin_all}
 \title{Convenience wrapper around bin_apply_all and merge_behavr_all}
 \usage{
-bin_all(
-  data,
-  x = "t",
-  y,
-  x_bin_length = 30 * 60,
-  FUN = mean,
-  keep_columns = NULL
-)
+bin_all(data, x = "t", y)
+}
+\arguments{
+\item{data}{A behavr table}
+
+\item{x}{Name of column to make bins of, normally "t" for time}
+
+\item{y}{Columns in data to compute aggregates for. Can be more than 1!}
 }
 \description{
 Bin variable \code{y} along variable \code{x} on bins of length \code{x_bin_length}
