@@ -35,7 +35,7 @@ bind_behavr_list <- function(l){
   l <- l[!sapply(l,is.null)]
   if(length(l) == 0)
     return(NULL)
-  all_md <- lapply(l, fslbehavr::meta)
+  all_md <- lapply(l, behavr::meta)
   meta_key <- lapply(all_md, data.table::key)
   if(!all_identical(meta_key))
     stop("metadata do not have the same key!")
