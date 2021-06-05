@@ -83,6 +83,7 @@ bin_apply <- function(data, y, x = "t", x_bin_length = mins(30),
 
 
 #' @rdname bin_apply
+#' @details bin_apply_all for a multiindividual dataset
 #' @export
 bin_apply_all <- function(data, ...){
   # trick to avoid NOTES from R CMD check:
@@ -94,7 +95,7 @@ bin_apply_all <- function(data, ...){
 bin_var <- function(t, bin_length, wrap = NULL){
   if(!is.null(wrap))
     t <- t %% wrap
-  floor(t /bin_length) * bin_length
+  floor(t / bin_length) * bin_length
 }
 
 
