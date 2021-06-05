@@ -7,7 +7,6 @@
 #' very long time series may result in unnecessary -- and prohibitively -- large memory footprint.
 #' @inheritParams meta
 #' @return a [data.table]
-#' @param not_behavr_ok If TRUE just return x when x is not behavr. If not TRUE and x is not behavr, raise error
 #' @examples
 #' set.seed(1)
 #' met <- data.table::data.table(id = 1:5,
@@ -27,11 +26,9 @@
 #' @seealso
 #' * [behavr] -- to formally create a behavr object
 #' @export
-rejoin <- function(x,  not_behavr_ok = FALSE){
-   if(!is.behavr(x)) {
-       stop("x is not a behavr table")
-     check_conform(x)
-     data.table::as.data.table(meta(x)[x])
-   }
+rejoin <- function(x){
+ if(!is.behavr(x))
+   stop("x is not a behavr table")
+ check_conform(x)
+ data.table::as.data.table(meta(x)[x])
 }
-
