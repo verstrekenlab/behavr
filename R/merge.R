@@ -6,8 +6,13 @@
 #' The merge is performed using the t column
 #' Both tables should refer to the same individual
 #' since this function is not id-aware
+#' @param x first behavr table to merge
+#' @param y second behavr table to merge
+#' @importFrom dplyr full_join
 #' @export
 merge_behavr <- function(x, y) {
+
+  id <- NULL
   columns_x <- colnames(x)
   stopifnot("t" %in% colnames(x))
   stopifnot("t" %in% colnames(y))
@@ -32,12 +37,13 @@ merge_behavr <- function(x, y) {
   return(data)
 }
 
-#' @export
 #' @rdname merge_behavr
 #' @details merge_behavr with multi individual tables
+#' @importFrom purrr map
 #' @export
-
 merge_behavr_all <- function(x, y) {
+
+  id_ <- NULL
 
   x_id_column <- data.table::key(x)
   y_id_column <- data.table::key(y)

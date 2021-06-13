@@ -9,6 +9,11 @@ merge_behavr(x, y)
 
 merge_behavr_all(x, y)
 }
+\arguments{
+\item{x}{first behavr table to merge}
+
+\item{y}{second behavr table to merge}
+}
 \description{
 This function merges two behavr tables,
 represented by x and y, in such a way
