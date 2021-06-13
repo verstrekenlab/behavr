@@ -10,7 +10,9 @@ Depends:
     R (>= 3.00),
     data.table
 Imports:
-    methods
+    methods,
+    dplyr,
+    purrr
 Suggests: 
     testthat,
     covr,
