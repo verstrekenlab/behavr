@@ -1,4 +1,4 @@
 library(testthat)
-libary(fslbehavr)
+library(behavr)
 
-test_check("fslbehavr")
+test_check("behavr")
