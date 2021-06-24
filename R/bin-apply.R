@@ -75,7 +75,7 @@ bin_apply <- function(data, y, x = "t", x_bin_length = mins(30),
               ]
 
   out <- out[, b__ := bin_var( b__, x_bin_length, wrap=wrap_x_by)]
-  out <- out[, .(var__ = FUN(var__)),by = b__]
+  out <- out[, .(var__ = FUN(var__, ...)),by = b__]
 
   data.table::setnames(out, c("var__", "b__"), c(var_name, b_name))
 
