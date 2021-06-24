@@ -99,4 +99,40 @@ bin_var <- function(t, bin_length, wrap = NULL){
 }
 
 
+#' Convenience wrapper around bin_apply_all and merge_behavr_all
+#'
+#' Bin variable `y` along variable `x` on bins of length `x_bin_length`
+#' using function `summary_FUN`.
+#'
+#' @importFrom purrr map
+#' @param data A behavr table
+#' @param x Name of column to make bins of, normally "t" for time
+#' @param y Columns in data to compute aggregates for. Can be more than 1!
+#' @param ... Additional arguments to bin_apply_all
+#' @export
+bin_all <- function(data, y, x="t", ...) {
+
+  data <- lapply(y, function(yy) {
+    bin_apply_all(
+      data = data,
+      y = yy,
+      x = x,
+      ...
+    )
+  })
+
+  # if more than one variable was passed, merge the results
+  if (all(sapply(data, function(x) inherits(x, "behavr"))))
+    data <- Reduce(x = data, f = merge_behavr_all)
+  else if (any(sapply(data, function(x) inherits(x, "behavr"))))
+    stop("Some entries are of class behavr and some others are not")
+  # else if (length(data) > 1)
+  #   data <- do.call(dplyr::full_join, data)
+  # else
+  #   data <- data[[1]]
+
+  return(data)
+}
+
+
 
