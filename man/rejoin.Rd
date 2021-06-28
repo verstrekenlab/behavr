@@ -2,12 +2,19 @@
 % Please edit documentation in R/rejoin.R
 \name{rejoin}
 \alias{rejoin}
+\alias{unjoin}
 \title{Join data and metadata}
 \usage{
 rejoin(x)
+
+unjoin(b, dt)
 }
 \arguments{
 \item{x}{\link{behavr} object}
+
+\item{b}{Reference behavr dataset}
+
+\item{dt}{data.table resulting from a previously rejoined behavr}
 }
 \value{
 a \link{data.table}
@@ -18,6 +25,10 @@ When dealing with large data sets, it is preferable to keep metadata and data se
 until a summary of data is computed.
 Indeed, joining many metavariables to
 very long time series may result in unnecessary -- and prohibitively -- large memory footprint.
+}
+\details{
+This function is useful if dt has undergone some processing / filtering
+in its data.table form but we want to recover again its behavr original format
 }
 \examples{
 set.seed(1)
@@ -35,6 +46,14 @@ data <- met[,
 d <- behavr(data, met)
 summary_d <- d[, .(test = mean(x)), by = id]
 rejoin(summary_d)
+# add some meta variable to the metadata
+# to showcase that the metadata columns are also recovered
+dt <- behavr::toy_ethoscope_data()
+metadata <- behavr::meta(dt)
+metadata[, metavar := "C"]
+behavr::setmeta(dt, metadata)
+dt_rejoined <- behavr::rejoin(dt)
+dt_unjoin  <- behavr::split(dt_rejoined)
 }
 \seealso{
 \itemize{

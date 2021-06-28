@@ -5,7 +5,7 @@
 \alias{merge_behavr_all}
 \title{Merge several behavr tables into a single dataframe}
 \usage{
-merge_behavr(x, y)
+merge_behavr(x, y, merge_meta = TRUE)
 
 merge_behavr_all(x, y)
 }
