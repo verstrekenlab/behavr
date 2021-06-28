@@ -23,3 +23,14 @@ test_that("fails when not called on a behavr", {
   data.table::setattr(d,"metadata", NULL)
   expect_error(rejoin(d), "no metadata")
 })
+
+test_that("unjoin works", {
+
+  dt <- toy_ethoscope_data()
+  metadata <- meta(dt)
+  metadata$metavar <- "C"
+  setmeta(dt, metadata)
+  dt_rejoined <- rejoin(dt)
+  dt_unjoin <- unjoin(dt, dt_rejoined)
+  expect_identical(dt, dt_unjoin)
+})
