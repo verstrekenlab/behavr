@@ -41,7 +41,7 @@ merge_behavr <- function(x, y, merge_meta=TRUE) {
 #' @rdname merge_behavr
 #' @details merge_behavr with multi individual tables
 #' @export
-merge_behavr_all <- function(x, y) {
+merge_behavr_all <- function(x, y, merge_meta=TRUE) {
 
   id_ <- NULL
 
@@ -56,7 +56,7 @@ merge_behavr_all <- function(x, y) {
      res <- merge_behavr(
        x[id_ == id_value, ],
        y[id_ == id_value, ],
-       merge_meta = FALSE
+       merge_meta = merge_meta
      )
      res[, id_ := NULL]
 
