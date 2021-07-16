@@ -10,7 +10,7 @@ simplify_behavr <- function(data, meta = FALSE) {
 
   if(meta) {
     metadata <- data[, meta = T]
-    metadata <- fortify(metadata, FALSE)
+    metadata <- simplify_behavr(metadata, FALSE)
     behavr::setmeta(data, metadata)
   }
 
