@@ -17,7 +17,7 @@ merge_behavr <- function(x, y, merge_meta=TRUE) {
   stopifnot("t" %in% colnames(y))
 
   # merge the data
-  data <- merge(x, y[, c("t", setdiff(colnames(y), columns_x)), with = F], by = "t")
+  data <- merge(x, y[, c("t", data.table::key(y), setdiff(colnames(y), columns_x)), with = F], by = c("t", data.table::key(y)))
   data <- data[, c("id", "t", setdiff(colnames(data), c("id", "t"))), with=F]
 
   if (merge_meta) {
